@@ -1,0 +1,197 @@
+<div class="card">
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit(employeeForm.value)">
+    <div class="card-header">{{pageTitle}}</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="fullName" class="form-label">Enter Full Name</label>
+        <input
+          type="text"
+          formControlName="fullName"
+          class="form-control"
+          [ngClass]="{ 'has-error': formErrors.fullName }"
+          (blur)="logKeyValuePair()"
+        />
+        <span
+          [ngClass]="{ 'has-error-text': formErrors.fullName }"
+          *ngIf="[formErrors.fullName]"
+        >
+          {{ formErrors.fullName }}
+        </span>
+      </div>
+      <div class="form-group">
+        <label for="proficiency"
+          >Proficiency :
+          <input
+            type="radio"
+            value="email"
+            formControlName="contactPreference"
+          />Email
+          <input
+            type="radio"
+            value="phone"
+            formControlName="contactPreference"
+          />Phone
+        </label>
+      </div>
+
+      <div formGroupName="emailGroup">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            formControlName="email"
+            class="form-control"
+            [ngClass]="{ 'has-error': formErrors.email }"
+            (blur)="logKeyValuePair()"
+          />
+          <span
+            [ngClass]="{ 'has-error-text': formErrors.email }"
+            *ngIf="[formErrors.email]"
+          >
+            {{ formErrors.email }}
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmEmail">ConfirmEmail</label>
+          <input
+            type="text"
+            formControlName="confirmEmail"
+            class="form-control"
+            [ngClass]="{
+              'has-error': formErrors.confirmEmail || formErrors.emailGroup
+            }"
+            (blur)="logKeyValuePair()"
+          />
+          <span
+            [ngClass]="{
+              'has-error-text': formErrors.confirmEmail || formErrors.emailGroup
+            }"
+            *ngIf="[formErrors.confirmEmail || formErrors.emailGroup]"
+          >
+            {{
+              formErrors.confirmEmail
+                ? formErrors.confirmEmail
+                : formErrors.emailGroup
+            }}
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          formControlName="phone"
+          class="form-control"
+          [ngClass]="{ 'has-error': formErrors.phone }"
+          (blur)="logKeyValuePair()"
+        />
+        <span
+          [ngClass]="{ 'has-error-text': formErrors.phone }"
+          *ngIf="[formErrors.phone]"
+        >
+          {{ formErrors.phone }}
+        </span>
+      </div>
+
+      <div class="well">
+        <button class="btn btn-primary" (click)="onAddSkill()"
+          [disabled]="employeeForm.get('skills')?.invalid">
+          Add more skill
+        </button>
+        <div formArrayName="skills" *ngFor="let skill of skills; let i = index"> 
+          <hr  *ngIf="i>0">
+          <div [formGroupName]="i" class="greyBg">
+            <div class="form-group">
+              <label [attr.for]="'skill'+i"> Skills</label>
+              <input
+                type="text"
+                [id]="'skill'+i"
+                formControlName="skill"
+                class="form-control"
+                [ngClass]="{ 'has-error': skill.get('skill')?.invalid && skill.get('skill')?.touched }"
+                
+              />
+              <span
+                [ngClass]="{ 'has-error-text': skill.get('skill')?.invalid && skill.get('skill')?.touched  }"
+                *ngIf="skill.get('skill')?.invalid && skill.get('skill')?.touched"
+              >
+                Skill name is required
+              </span>
+              <br />
+              <label [attr.for]="'experienceInYears'+i">Experience in Years</label>
+              <input
+                type="text"
+                [id]="'experienceInYears'+i"
+                formControlName="experienceInYears"
+                class="form-control"
+                [ngClass]="{ 'has-error': skill.get('experienceInYears')?.invalid && skill.get('experienceInYears')?.touched }"
+                
+              />
+              <span
+                [ngClass]="{ 'has-error-text': skill.get('experienceInYears')?.invalid && skill.get('experienceInYears')?.touched  }"
+                *ngIf="skill.get('experienceInYears')?.invalid && skill.get('experienceInYears')?.touched"
+              >
+                Experience in year is required
+              </span>
+            </div>
+            <div class="form-group">
+              <label 
+                >Proficiency :
+                <input
+                  type="radio"
+                  value="begineer"
+                  formControlName="proficiency"
+                  [ngClass]="{ 'has-error': skill.get('proficiency')?.invalid && skill.get('proficiency')?.touched }"
+                  
+                />Begineer
+                <input
+                  type="radio"
+                  value="intermediate"
+                  formControlName="proficiency"
+                  [ngClass]="{ 'has-error': skill.get('proficiency')?.invalid && skill.get('proficiency')?.touched }"
+                  
+                />Intermediate
+                <input
+                  type="radio"
+                  value="advanced"
+                  formControlName="proficiency"
+                  [ngClass]="{ 'has-error': skill.get('proficiency')?.invalid && skill.get('proficiency')?.touched }"
+                  
+                />Advance
+              </label>
+              <br />
+              <span
+                [ngClass]="{ 'has-error-text': skill.get('proficiency')?.invalid && skill.get('proficiency')?.touched}"
+                *ngIf="skill.get('proficiency')?.invalid && skill.get('proficiency')?.touched"
+              >
+                Please provide proficiency level
+              </span>
+            </div>
+            <div>
+              <button class="btn btn-danger" *ngIf="skills.length>1" (click)="deleteSkill(i)">
+                Delete skill
+              </button>
+            </div>
+               
+          </div>
+          
+        </div>  
+      </div>
+     
+    </div>
+
+    <div class="card-footer">
+      <ng-container class="btn-toolbar">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="onLoad()">
+          Load data
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="onPatch()">
+          Load Few data
+        </button>
+      </ng-container>
+    </div>
+  </form>
+</div>

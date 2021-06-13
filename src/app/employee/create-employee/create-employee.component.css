@@ -1,0 +1,18 @@
+.has-error{
+    border: 2px solid red;
+}
+
+.has-error-text{
+    color : red;
+}
+.greyBg{
+    background-color: rgb(231, 225, 225);
+    
+}
+
+.well{
+    margin: 10px;
+    padding: 10px;
+    
+    
+}

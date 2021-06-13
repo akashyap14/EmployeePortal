@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="bg-secondary">
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Contact Preference</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let emp of employees">
+                <td>{{emp.fullName}}</td>
+                <td>{{emp.email}}</td>
+                <td>{{emp.phone}}</td>
+                <td>{{emp.contactPreference}}</td>
+                <td><button class="btn btn-primary" (click)="onEditEmployee(emp.id)">Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

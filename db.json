@@ -1,0 +1,89 @@
+{
+  "employees": [
+    {
+      "fullName": "Mark",
+      "contactPreference": "email",
+      "phone": "5641238971",
+      "skills": [
+        {
+          "skill": "Angular12",
+          "experienceInYears": 1,
+          "proficiency": "beginner"
+        },
+        {
+          "skill": "sap hana",
+          "experienceInYears": 2,
+          "proficiency": "intermediate"
+        }
+      ],
+      "id": 1,
+      "email": "mark@email.com"
+    },
+    {
+      "fullName": "John",
+      "contactPreference": "phone",
+      "phone": "8527419633",
+      "skills": [
+        {
+          "skill": "Angular",
+          "experienceInYears": 2,
+          "proficiency": "beginner"
+        },
+        {
+          "skill": "HTML",
+          "experienceInYears": 2,
+          "proficiency": "intermediate"
+        },
+        {
+          "skill": "LINQ",
+          "experienceInYears": 3,
+          "proficiency": "advanced"
+        }
+      ],
+      "id": 2,
+      "email": "dell@dell.com"
+    },
+    {
+      "fullName": "gina mina",
+      "contactPreference": "phone",
+      "phone": "9566191278",
+      "skills": [
+        {
+          "skill": "Angular12",
+          "experienceInYears": "6",
+          "proficiency": "begineer"
+        }
+      ],
+      "id": 3,
+      "email": "koolv55@dell.com"
+    },
+    {
+      "fullName": "ak",
+      "contactPreference": "email",
+      "phone": "9566191278",
+      "skills": [
+        {
+          "skill": "Angular12",
+          "experienceInYears": "2",
+          "proficiency": "advanced"
+        }
+      ],
+      "id": 4,
+      "email": "k@dell.com"
+    },
+    {
+      "fullName": "bk",
+      "contactPreference": "email",
+      "phone": "7418529630",
+      "skills": [
+        {
+          "skill": "Angular12",
+          "experienceInYears": "34",
+          "proficiency": "advanced"
+        }
+      ],
+      "email": "s@dell.com",
+      "id": 5
+    }
+  ]
+}
